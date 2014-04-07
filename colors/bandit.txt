@@ -74,6 +74,7 @@ Dark:
 	hlLevel7:#ffff44
 	hlLevel8:#96cdcd
 	hlLevel9:#698b22
+	EasyMotionTarget:Red,#333333
 LightAuto:True
 LightOverride:
 	Comment:DarkGreen
