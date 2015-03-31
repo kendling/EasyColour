@@ -29,6 +29,7 @@ Dark:
 	Function:#007777
 	Method:#009966
 	Class:#DD9070
+	Conceal:#2222FF
 	DefinedName:Violet
 	EnumerationValue:#C000C0
 	EnumerationName:#FF22FF
