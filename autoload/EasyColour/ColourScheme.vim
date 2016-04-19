@@ -1,6 +1,6 @@
 " Easy Colour:
 "   Author:  A. S. Budden <abudden _at_ gmail _dot_ com>
-" Copyright: Copyright (C) 2011-2012 A. S. Budden
+" Copyright: Copyright (C) 2011-2016 A. S. Budden
 "            Permission is hereby granted to use and distribute this code,
 "            with or without modifications, provided that this copyright
 "            notice is copied with it. Like anything else that's free,
@@ -22,6 +22,11 @@ let g:loaded_EasyColourColourScheme = 1
 
 if ! exists('g:EasyColourDebug')
 	let g:EasyColourDebug = 0
+endif
+" Rather nasty little hack that can be used to make the GUI highlighting
+" work on neovim-qt (which reports has("gui_running") == 0)
+if ! exists('g:EasyColourForceGUI')
+	let g:EasyColourForceGUI = 0
 endif
 
 function! EasyColour#ColourScheme#LoadColourScheme(name)
@@ -113,7 +118,7 @@ let s:all_fields = {'guifg': 'FG', 'guibg': 'BG', 'gui': 'Style', 'guisp': 'SP',
 let s:field_order = ["FG","BG","SP","Style"]
 
 function! s:GetColourMap()
-	if has("gui_running")
+	if has("gui_running") || g:EasyColourForceGUI
 		let colour_map = 'None'
 	else
 		if &t_Co == 256
@@ -130,7 +135,7 @@ function! s:GetColourMap()
 endfunction
 
 function! s:GenerateColourMap(Colours)
-	if has("gui_running")
+	if has("gui_running") || g:EasyColourForceGUI
 		let field_map = s:gui_fields
 	else
 		let field_map = s:cterm_fields
