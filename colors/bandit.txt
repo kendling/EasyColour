@@ -76,6 +76,9 @@ Dark:
 	hlLevel8:#96cdcd
 	hlLevel9:#698b22
 	EasyMotionTarget:Red,#333333
+	gcovExecuted:DarkGreen
+	gcovNotExecuted:Red
+	gcovNoCode:Grey
 LightAuto:True
 LightOverride:
 	Comment:DarkGreen
