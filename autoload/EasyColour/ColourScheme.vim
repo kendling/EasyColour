@@ -305,7 +305,13 @@ function! s:AutoHandler(ColourScheme, basis, details)
 				endif
 				" Do a complete colour invert on normal
 				let std_colour = EasyColour#Translate#GetHexColour(standard_field_colour_map[hlgroup][field])
-				let modified_colours[hlgroup][field] = EasyColour#Shade#Invert(std_colour)
+				let modified_colour = EasyColour#Shade#Invert(std_colour)
+				if colour_map == 'None'
+					let modified_colours[hlgroup][field] = modified_colour
+				else
+					let modified_colours[hlgroup][field] =
+								\ EasyColour#Translate#FindNearest(colour_map, modified_colour)
+				endif
 			else
 				" Handle customised colours
 				if s:all_fields[field] != 'Style' && has_key(a:ColourScheme['Colours'], standard_field_colour_map[hlgroup][field])
@@ -335,7 +341,7 @@ function! s:AutoHandler(ColourScheme, basis, details)
 					let modified_colours[hlgroup][field] = s:StyleModifier(modified_colour)
 				elseif colour_map == 'None'
 					let modified_colours[hlgroup][field] = modified_colour
-				elseif modified_colours[hlgroup][field] == 'NONE'
+				elseif has_key(modified_colours[hlgroup], field) && modified_colours[hlgroup][field] == 'NONE'
 					" Leave as is
 				else
 					let modified_colours[hlgroup][field] = 

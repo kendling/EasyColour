@@ -258,6 +258,8 @@ function! EasyColour#Translate#FindNearest(subset, colour)
 	let colour_key = tolower(a:colour)
 	if colour_key =~ '^#\x\{6}$'
 		let req_rgb_colour = [str2nr(colour_key[1:2], 16), str2nr(colour_key[3:4], 16), str2nr(colour_key[5:6], 16)]
+	elseif a:colour == 'NONE'
+		return 'None'
 	elseif has_key(s:RGBMap, colour_key)
 		let req_rgb_colour = s:RGBMap[colour_key]
 	elseif has_key(s:missing_colour_map, colour_key)
