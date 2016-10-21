@@ -455,6 +455,9 @@ Copyright:  (c) 2011-2016 by A. S. Budden                  *EasyColour-copyright
                                  Fixed a bug with light backgrounds on
                                  terminal vim.
 
+                                 Added ability to override auto-colours for
+                                 normal background/foreground.
+
 1.1.1: 7th March 2012          : Added rgb.txt to distribution.
 
 1.1.0:  24th February 2012     : Added support for custom colour definitions

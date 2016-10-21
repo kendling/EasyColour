@@ -298,33 +298,29 @@ function! s:AutoHandler(ColourScheme, basis, details)
 				" Don't modify those specified as NONE
 				let modified_colours[hlgroup][field] = 'NONE'
 				continue
-			elseif hlgroup == 'Normal'
-				" Handle customised colours
-				if s:all_fields[field] != 'Style' && has_key(a:ColourScheme['Colours'], standard_field_colour_map[hlgroup][field])
-					let standard_field_colour_map[hlgroup][field] = a:ColourScheme['Colours']
-				endif
-				" Do a complete colour invert on normal
-				let std_colour = EasyColour#Translate#GetHexColour(standard_field_colour_map[hlgroup][field])
-				let modified_colour = EasyColour#Shade#Invert(std_colour)
-				if colour_map == 'None'
-					let modified_colours[hlgroup][field] = modified_colour
-				else
-					let modified_colours[hlgroup][field] =
-								\ EasyColour#Translate#FindNearest(colour_map, modified_colour)
-				endif
 			else
-				" Handle customised colours
-				if s:all_fields[field] != 'Style' && has_key(a:ColourScheme['Colours'], standard_field_colour_map[hlgroup][field])
-					let standard_field_colour_map[hlgroup][field] = a:ColourScheme['Colours'][standard_field_colour_map[hlgroup][field]]
-				endif
-				let std_colour = EasyColour#Translate#GetHexColour(standard_field_colour_map[hlgroup][field])
-				" Modify the colour if it's too dark or too light
-				if a:details == 'Dark'
-					let modified_colour = EasyColour#Shade#LightBGToDarkBG(std_colour)
-				elseif a:details == 'Light'
-					let modified_colour = EasyColour#Shade#DarkBGToLightBG(std_colour)
+				if hlgroup == 'Normal'
+					" Handle customised colours
+					if s:all_fields[field] != 'Style' && has_key(a:ColourScheme['Colours'], standard_field_colour_map[hlgroup][field])
+						let standard_field_colour_map[hlgroup][field] = a:ColourScheme['Colours']
+					endif
+					" Do a complete colour invert on normal
+					let std_colour = EasyColour#Translate#GetHexColour(standard_field_colour_map[hlgroup][field])
+					let modified_colour = EasyColour#Shade#Invert(std_colour)
 				else
-					echoerr "Parameter passed incorrectly: something's gone very wrong!"
+					" Handle customised colours
+					if s:all_fields[field] != 'Style' && has_key(a:ColourScheme['Colours'], standard_field_colour_map[hlgroup][field])
+						let standard_field_colour_map[hlgroup][field] = a:ColourScheme['Colours'][standard_field_colour_map[hlgroup][field]]
+					endif
+					let std_colour = EasyColour#Translate#GetHexColour(standard_field_colour_map[hlgroup][field])
+					" Modify the colour if it's too dark or too light
+					if a:details == 'Dark'
+						let modified_colour = EasyColour#Shade#LightBGToDarkBG(std_colour)
+					elseif a:details == 'Light'
+						let modified_colour = EasyColour#Shade#DarkBGToLightBG(std_colour)
+					else
+						echoerr "Parameter passed incorrectly: something's gone very wrong!"
+					endif
 				endif
 
 				" Now have a look for any overrides
