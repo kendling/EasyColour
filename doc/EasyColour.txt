@@ -3,7 +3,7 @@
 Author:     A. S. Budden <abuddenNOSPAM@NOSPAMgmail.com>
 			Remove NOSPAM.
 
-Copyright:  (c) 2011-2012 by A. S. Budden                  *EasyColour-copyright*
+Copyright:  (c) 2011-2016 by A. S. Budden                  *EasyColour-copyright*
             Permission is hereby granted to use and distribute this code,
             with or without modifications, provided that this copyright
             notice is copied with it. Like anything else that's free,
@@ -448,9 +448,12 @@ Copyright:  (c) 2011-2012 by A. S. Budden                  *EasyColour-copyright
 ==============================================================================
 3. EasyColour History                  *EasyColour-history*                 {{{1
 
-1.1.2: Xth Xxxxxxx 2012        : Added support for multiple styles for a
+1.1.2: Xth Xxxxxxx 2016        : Added support for multiple styles for a
                                  single group (thanks to Zhao Cai for the
                                  suggestion).
+
+                                 Fixed a bug with light backgrounds on
+                                 terminal vim.
 
 1.1.1: 7th March 2012          : Added rgb.txt to distribution.
 
