@@ -1,6 +1,6 @@
 " Easy Colour:
 "   Author:  A. S. Budden <abudden _at_ gmail _dot_ com>
-" Copyright: Copyright (C) 2011 A. S. Budden
+" Copyright: Copyright (C) 2011-2016 A. S. Budden
 "            Permission is hereby granted to use and distribute this code,
 "            with or without modifications, provided that this copyright
 "            notice is copied with it. Like anything else that's free,
@@ -258,6 +258,8 @@ function! EasyColour#Translate#FindNearest(subset, colour)
 	let colour_key = tolower(a:colour)
 	if colour_key =~ '^#\x\{6}$'
 		let req_rgb_colour = [str2nr(colour_key[1:2], 16), str2nr(colour_key[3:4], 16), str2nr(colour_key[5:6], 16)]
+	elseif a:colour == 'NONE'
+		return 'None'
 	elseif has_key(s:RGBMap, colour_key)
 		let req_rgb_colour = s:RGBMap[colour_key]
 	elseif has_key(s:missing_colour_map, colour_key)
